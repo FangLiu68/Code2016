@@ -5,15 +5,19 @@ public:
             return;
         }
         
-        int index = 0;
-        for(int i=0; i<nums.size(); ++i){
-            if(nums[i] != 0){
-                nums[index++] = nums[i];
+        int slow = 0;
+        int fast = 0;
+        
+        while(fast < nums.size()){
+            if(nums[fast] == 0){
+                fast++;
+            }else{
+                nums[slow++] = nums[fast++];
             }
         }
         
-        while(index < nums.size()){
-            nums[index++] = 0;
+        while(slow < nums.size()){
+            nums[slow++] = 0;
         }
     }
 };
