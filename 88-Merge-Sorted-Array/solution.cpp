@@ -10,7 +10,7 @@ public:
     int last2 = n-1;
     
     while(last1>=0 && last2>=0){
-        nums1[last_merge_index--] = (nums1[last1]>nums2[last2])? nums1[last1--] : nums2[last2--];
+        nums1[last_merge_index--] = (nums1[last1]>=nums2[last2])? nums1[last1--] : nums2[last2--];
     }
     
     while(last2 >= 0){
