@@ -1,7 +1,9 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        if(prices.empty()) return 0;
+        if(prices.size() < 2){
+            return 0;
+        }
         
         int cur_min = prices[0];
         int max_diff = 0;
