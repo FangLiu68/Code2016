@@ -6,15 +6,17 @@ public:
             return res;
         }
         
-        int left = first_occur(nums, target);
-        int right = last_occur(nums, target);
-        res.push_back(left);
-        res.push_back(right);
+        int first = first_occur(nums, target);
+        int last = last_occur(nums, target);
+        
+        res.push_back(first);
+        res.push_back(last);
         
         return res;
     }
     
-    int first_occur(vector<int> nums, int target){
+    // first occur of target
+    int first_occur(vector<int>& nums, int target){
         if(nums.empty()){
             return -1;
         }
@@ -22,20 +24,24 @@ public:
         int left = 0;
         int right = nums.size() - 1;
         
-        while(left < right - 1){
+        while(left < right-1){
             int mid = left + (right-left)/2;
-            if(nums[mid] >= target){
+            if(nums[mid] == target){
                 right = mid;
-            }else{
+            }else if(nums[mid] < target){
                 left = mid;
+            }else{
+                right = mid;
             }
         }
+        
         if(nums[left] == target) return left;
         if(nums[right] == target) return right;
+        
         return -1;
     }
     
-    int last_occur(vector<int> nums, int target){
+    int last_occur(vector<int>& nums, int target){
         if(nums.empty()){
             return -1;
         }
@@ -43,16 +49,20 @@ public:
         int left = 0;
         int right = nums.size() - 1;
         
-        while(left < right - 1){
-            int mid = left + (right - left)/2;
-            if(nums[mid] <= target){
+        while(left < right-1){
+            int mid = left + (right-left)/2;
+            if(nums[mid] == target){
+                left = mid;
+            }else if(nums[mid] < target){
                 left = mid;
             }else{
                 right = mid;
             }
         }
+        
         if(nums[right] == target) return right;
         if(nums[left] == target) return left;
+        
         return -1;
     }
 };
