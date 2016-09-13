@@ -9,17 +9,19 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if(head == NULL || head->next == NULL) return head;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* pre = dummy;
+        ListNode* cur = head;
         
-        // Given 1->2->3->4, you should return the list as 2->1->4->3
-        ListNode* node1 = head;
-        ListNode* node2 = node1->next;
+        while(cur && cur->next){
+            pre->next = cur->next;
+            cur->next = cur->next->next;
+            pre->next->next = cur;
+            pre = cur;
+            cur = cur->next;
+        }
         
-        ListNode* newHead = swapPairs(node2->next);
-        
-        node2->next = node1;
-        node1->next = newHead;
-        
-        return node2;
+        return dummy->next;
     }
 };
