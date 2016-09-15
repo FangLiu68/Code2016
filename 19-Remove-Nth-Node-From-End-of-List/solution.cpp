@@ -21,7 +21,7 @@ public:
         ListNode* fast = start;
         
         for(int i=0; i<n; ++i){
-            if(fast == NULL) return NULL;
+            //if(fast == NULL) return NULL;
             fast = fast->next;
         }   
         
