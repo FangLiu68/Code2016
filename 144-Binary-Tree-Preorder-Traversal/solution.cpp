@@ -12,17 +12,22 @@ public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> res;
         if(root == NULL) return res;
-        helper(root, res);
-        return res;
-    }
-    
-    void helper(TreeNode* root, vector<int>& res){
-        if(root == NULL){
-            return;
+        
+        stack<TreeNode*> stk;
+        stk.push(root);
+        
+        while(!stk.empty()){
+            TreeNode* cur = stk.top();
+            stk.pop();
+            res.push_back(cur->val);
+            if(cur->right){
+                stk.push(cur->right);
+            }
+            if(cur->left){
+                stk.push(cur->left);
+            }
         }
         
-        res.push_back(root->val);
-        helper(root->left, res);
-        helper(root->right, res);
+        return res;
     }
 };
