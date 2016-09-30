@@ -20,9 +20,6 @@ public:
         if(root == NULL) return 0;
         int left = helper_maxPathSum(root->left, res);
         int right = helper_maxPathSum(root->right, res);
-        // int cur = root->val;
-        // if(left > 0) cur += left;
-        // if(right > 0) cur += right;
         left = left>0? left:0;
         right = right>0? right:0;
         int cur = left + right + root->val;
